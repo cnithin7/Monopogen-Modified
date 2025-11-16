@@ -78,3 +78,38 @@ zgrep -v '0/0' retina/germline/chr20.gp.vcf.gz > retina/germline/chr20.germline.
 
 
 For more detailed information on files needed, customization of files and scripts , refer the original Monopogen github - https://github.com/KChen-lab/Monopogen?tab=readme-ov-file
+
+
+Use Docker for easier run:
+bsub -Is     -G compute-oncology     -q oncology-interactive     -a 'docker(ksinghal28/monopogen:1.1)'     /bin/bash
+
+
+# For LDrefinement step (If data.table error pops up)
+
+Run the steps until LDRefinement normally
+
+
+Before LDRefinement , make a temp directory first to install the R packages that is required for that step
+
+```
+mkdir -p /tmp/Rlibs
+chmod 777 /tmp/Rlibs
+```
+
+Install these packages in the temp folder to make them useful for the command
+
+```
+Rscript --vanilla -e 'install.packages(c("data.table","e1071","ggplot2","R.utils"), lib="/tmp/Rlibs", repos="https://cloud.r-project.org")'
+```
+
+Then run the python command for LDrefinement by setting the variable for R to use the packages location you set
+
+set these R commands at the start of the python command and then run the python command for LDrefinement
+
+```
+R_LIBS="/tmp/Rlibs" \
+R_LIBS_USER="/tmp/Rlibs" \
+R_ENVIRON_USER="" \
+R_PROFILE_USER="" \
+python ..........
+```
