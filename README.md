@@ -1,5 +1,8 @@
 # Monopogen Setup Guide
 
+
+# SCROLL DOWN FOR BETTER OPTION
+
 This guide provides instructions for setting up Monopogen using a Conda environment and making necessary modifications to streamline its use.
 
 # Set Up Conda Environment
@@ -79,9 +82,12 @@ zgrep -v '0/0' retina/germline/chr20.gp.vcf.gz > retina/germline/chr20.germline.
 
 For more detailed information on files needed, customization of files and scripts , refer the original Monopogen github - https://github.com/KChen-lab/Monopogen?tab=readme-ov-file
 
+# BETTER OPTION (RUN THE COMMANDS AS GIVEN IN MONOPOGEN ORIGINAL README WITHIN THIS DOCKER FOR EASIER ANALYSIS)
 
 Use Docker for easier run:
+```
 bsub -Is     -G compute-oncology     -q oncology-interactive     -a 'docker(ksinghal28/monopogen:1.1)'     /bin/bash
+```
 
 
 # For LDrefinement step (If data.table error pops up)
